@@ -1,9 +1,23 @@
 import React from "react";
 
-const OperatorButton = () => {
+const OperatorButton = (props) => {
+  function changeAmt(){
+    if (props.symbol !== '='){
+      return props.setDisplayCalc(props.displayCalc+props.value);
+    }
+    else {
+      let answer = props.displayCalc;
+      let answer2 = eval(answer);
+      
+      let answerString= answer2.toString();
+      
+      return props.setDisplayCalc(answerString);
+    }
+  }
   return (
-    <>
-      {/* Display a button element rendering the data being passed down from the parent container on props */}
-    </>
+    <button className= "ops-button" onClick={()=> changeAmt()}>{props.symbol}
+    </button>
   );
 };
+
+export default OperatorButton
